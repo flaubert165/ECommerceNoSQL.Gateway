@@ -19,6 +19,9 @@ namespace ECommerceNoSQL.Gateway
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hots, config) => {
+                    config.AddJsonFile("ocelot.json");
+                })
                 .UseStartup<Startup>();
     }
 }

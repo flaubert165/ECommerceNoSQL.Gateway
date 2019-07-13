@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Ocelot.Middleware;
+using Ocelot.DependencyInjection;
 
 namespace ECommerceNoSQL.Gateway
 {
@@ -26,10 +28,11 @@ namespace ECommerceNoSQL.Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddOcelot(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -42,6 +45,7 @@ namespace ECommerceNoSQL.Gateway
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            await app.UseOcelot();
         }
     }
 }
