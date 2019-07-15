@@ -1,3 +1,3 @@
 # ECommerceNoSQL.Gateway
 
-Ocelot Gateway API to ECommerceNoSQL project.
+Ocelot Gateway API to NETCore ECommerceNoSQL project.
